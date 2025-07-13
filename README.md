@@ -1,4 +1,8 @@
-# React + Vite
+# parquesoft-reactjs-1
+
+A React + Vite application for Parquesoft training.
+
+## About
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
