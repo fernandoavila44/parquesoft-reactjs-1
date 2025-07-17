@@ -1,0 +1,1 @@
+//Crear un componente simple que muestre un mensaje con JSX.
