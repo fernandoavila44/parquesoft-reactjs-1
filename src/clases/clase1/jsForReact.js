@@ -20,6 +20,7 @@ const JsData = () => {
 
   // los tipos simples son inmutables
   let copyEdad = edad
+  console.log(copyEdad)
   copyEdad = 100
   console.log({ edad, copyEdad })
   // { edad: 60, copyEdad: 100 }
@@ -34,6 +35,11 @@ const JsData = () => {
     name: "charizard",
     recommended: true,
   }
+  const nuevoPokemon = { ...pokimon }
+
+  console.log(pokimon, nuevoPokemon)
+  nuevoPokemon.id = 10;
+  console.log(pokimon, nuevoPokemon)
   // los objetos son tuplas de clave-valor (key-value)
 
   //arreglos
@@ -57,7 +63,7 @@ const JsData = () => {
   //💥 naturales = [6, 2, 3, 4, 5]
   naturales[0] = 6 // [6, 2, 3, 4, 5]
 
-  const copyNaturales = naturales
+  const copyNaturales = [...naturales]
   copyNaturales[0] = 3
   console.log({ naturales, copyNaturales })
   // { naturales: [3, 2, 3, 4, 5], copyNaturales: [3, 2, 3, 4, 5] }
@@ -73,22 +79,32 @@ const JsData = () => {
       attack: 84,
       defense: 78,
       speed: 100,
+      otraCosa: {
+        key1: 1,
+        key2: 2
+      }
     },
     moves: ["fire blast", "wing attack", "fly"],
   }
+
+  const newPokimon = { ...charPokimon };
   console.log(charPokimon)
   charPokimon.stats.hp // 78
   charPokimon.moves[0] // "fire blast"
 
-  // string builder
+  // string builder / Template string
   const pet = "cats"
-  const message = `I have ${pet} and I love them`
 
+
+  const message = `I have ${pet} and I love them`
+  const message2 = `I have ${pet} and I love them`
+  console.log(message, message2)
   //---FUNCIONES---
 
   function sumaFn(a, b) {
     return a + b
   }
+
   const suma = (a, b) => {
     return a + b
   }

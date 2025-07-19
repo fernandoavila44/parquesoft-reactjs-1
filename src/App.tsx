@@ -10,7 +10,7 @@ function App() {
           Home
         </NavLink>
         <NavLink to="/clase1">JSX</NavLink>
-        <NavLink to="/clase2">Manejo del DOM</NavLink>
+        <NavLink to="/clase2">Componentes</NavLink>
       </nav>
     </>
   )
