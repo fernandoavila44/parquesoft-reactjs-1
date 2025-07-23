@@ -116,11 +116,17 @@ const JsData = () => {
   // cuando necesitamos enviar muchos params a una funcion
   // podemos usar un objeto
   const sumaConDecimales = (props) => {
-    const suma = props.a + props.b
-    return suma.toFixed(props.decimals || 0)
+    const suma = props.a + props.b + props.c
+    return suma.toFixed(props.decimales || 0)
   }
 
-  sumaConDecimales({ a: 1, b: 2, decimals: 2 }) // "3.00"
+  console.log(sumaConDecimales({
+    a: 1,
+    b: 2,
+    c: 5,
+    decimales: 2
+  })) // "8.00"
+
 
   // necesitamos saber que props quiere recibir la funcion
   // para poder utilizarla correctamente
@@ -128,10 +134,10 @@ const JsData = () => {
 
   //puedo asignar funciones a objetos y variables
   const functions = {
-    suma: suma,
+    suma1: suma,
     sumaConDecimales: sumaConDecimales,
   }
-  functions.suma(1, 2) // 3
+  functions.suma1(1, 2) // 3
 
   //puedo enviar funciones como parametros
   const fnConCallback = (callback) => {
@@ -150,8 +156,9 @@ const JsData = () => {
 
   // si me da pereza escribir
   pokimon.id
+  pokimon.name
   // puedo usar destructuring
-  const { id, name } = pokimon
+  const { id, name, stats: attack } = pokimon
   // esto es equivalente a
   // const id = pokimon.id
   // const name = pokimon.name
@@ -197,38 +204,39 @@ const JsData = () => {
   //los arreglos tienen varios metodos que me ayudan a recorrerlos
   //forEach, map, filter, reduce, find, findIndex, some, every, sort, reverse
   //veamos solo algunos
-  naturales.forEach(
-    (num) => {
-      console.log(num)
-    }
-  )
+  naturales.forEach((num) => console.log(num))
+
   //for each esta pensado para ser super genérico, no devuelve nada
   //solo recorre el arreglo y ejecuta una funcion por cada elemento
 
-  const evenNumbers = naturales.map(
+  const newArr = [23, 56, 78, 100, 205]
+  const evenNumbers = newArr.map(
     (num) => {
-      return num * 2
+      return num + 1
     }
   )
+  console.log(evenNumbers)
   //map devuelve un nuevo arreglo con los elementos transformados
   //IMPORTANTE: se espera que el arreglo devuelto tenga la misma cantidad de elementos que el original
   //si necesitamos un return condicional, o si no pretendemos retornar nada, usemos otras opciones
 
-  const bigNumbers = naturales.filter((num) => {
-    if (num > 3) {
+  const bigNumbers = newArr.filter((num) => {
+    if (num > 50) {
       return true
     }
     return false
   })
+  console.log(bigNumbers)
   //filter devuelve un nuevo arreglo con los elementos que cumplan la condicion
   //IMPORTANTE: se espera que el arreglo devuelto tenga la misma estructura que el original
 
-  const sum = naturales.reduce(
+  const sum = newArr.reduce(
     (acc, num) => {
       return acc + num
     },
     0
   )
+  console.log(sum)
   //reduce devuelve UN VALOR, no un arreglo
 
 

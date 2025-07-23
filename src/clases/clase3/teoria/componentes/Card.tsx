@@ -1,7 +1,7 @@
 import React from "react";
 import { User } from "./card.interface";
 
-const Card: React.FC<User> = ({ id, firstName, lastName, age, active }) => {
+const Card: React.FC<User> = ({ id, firstName, lastName, age, active, onClick }) => {
   return (
     <div
       style={{
@@ -10,8 +10,10 @@ const Card: React.FC<User> = ({ id, firstName, lastName, age, active }) => {
         margin: "10px",
         borderRadius: "8px",
         backgroundColor: active ? "#e6f7ff" : "#f9f9f9",
+        cursor: "pointer",
         color: '#000'
       }}
+      onClick={onClick}
     >
       <h3>
         {firstName} {lastName}

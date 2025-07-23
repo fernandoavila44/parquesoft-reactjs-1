@@ -2,6 +2,7 @@ export interface User {
   id: number;
   firstName: string;
   lastName: string;
-  age: number | null;
+  age: number;
   active: boolean;
+  onClick?: () => void;
 }
