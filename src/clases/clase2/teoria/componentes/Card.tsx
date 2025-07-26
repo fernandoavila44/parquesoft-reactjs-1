@@ -9,7 +9,7 @@ const Card: React.FC<User> = ({ id, firstName, lastName, age, active }) => {
         padding: "16px",
         margin: "10px",
         borderRadius: "8px",
-        backgroundColor: active ? "#e6f7ff" : "#f9f9f9",
+        backgroundColor: active ? "#33caec" : "#f27977",
         color: '#000'
       }}
     >

@@ -20,13 +20,13 @@ const Layout: React.FC = () => {
     <div>
       <h2>Lista de Usuarios</h2>
       <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {users.map((user) => (
+        {users.map(({ id, firstName, lastName, age, active }) => (
           <Card
-            id={user.id}
-            firstName={user.firstName}
-            lastName={user.lastName}
-            age={user.age}
-            active={user.active}
+            id={id}
+            firstName={firstName}
+            lastName={lastName}
+            age={age}
+            active={active}
           // {...user} // Spread operator pasa todas las props de User
           />
         ))}

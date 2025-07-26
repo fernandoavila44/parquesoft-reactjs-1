@@ -5,14 +5,11 @@ interface CounterProps {
 }
 
 const FunctionalCounter: React.FC<CounterProps> = ({ initialValue = 0 }) => {
-  const [count, setCount] = useState<number>(initialValue);
+
+  const [count, setCount] = useState(10);
 
   useEffect(() => {
-    console.log('useEffect - Montaje o actualización');
-
-    return () => {
-      console.log('useEffect cleanup - Equivalente a componentWillUnmount');
-    };
+    console.log('hago fetch al backend');
   }, [count]);
 
   const handleIncrement = () => {
