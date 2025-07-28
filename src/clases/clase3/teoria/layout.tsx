@@ -12,7 +12,7 @@ const Users: React.FC = () => {
     { id: 3, firstName: "Carlos", lastName: "Martínez", age: 42, active: true },
   ];
 
-  const handleClick = (user: User) => {
+  const handleSelectUser = (user: User) => {
     setSelectedUser(user);
   };
 
@@ -23,8 +23,12 @@ const Users: React.FC = () => {
         {users.map((user) => (
           <Card
             key={user.id}
-            {...user}
-            onClick={() => handleClick(user)}
+            id={user.id}
+            firstName={user.firstName}
+            lastName={user.lastName}
+            age={user.age}
+            active={user.active}
+            onClick={() => handleSelectUser(user)}
           />
         ))}
       </div>

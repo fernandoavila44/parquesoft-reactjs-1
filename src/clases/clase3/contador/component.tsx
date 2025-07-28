@@ -6,7 +6,7 @@ interface CounterProps {
 
 const FunctionalCounter: React.FC<CounterProps> = ({ initialValue = 0 }) => {
 
-  const [count, setCount] = useState(10);
+  const [count, setCount] = useState(initialValue);
 
   useEffect(() => {
     console.log('hago fetch al backend');

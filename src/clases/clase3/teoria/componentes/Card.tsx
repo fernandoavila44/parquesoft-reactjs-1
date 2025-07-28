@@ -1,7 +1,14 @@
 import React from "react";
 import { User } from "./card.interface";
 
-const Card: React.FC<User> = ({ id, firstName, lastName, age, active, onClick }) => {
+const Card: React.FC<User> = ({
+  id,
+  firstName,
+  lastName,
+  age,
+  active,
+  onClick
+}) => {
   return (
     <div
       style={{
