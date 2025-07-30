@@ -1,5 +1,6 @@
 import React from "react";
 import { User } from "./card.interface";
+import UserState from "./UserState";
 
 interface CardProps extends User {
   onClick?: () => void;
@@ -33,7 +34,7 @@ const Card: React.FC<CardProps> = React.memo(({
       <h3>{firstName} {lastName}</h3>
       <p>ID: {id}</p>
       <p>Edad: {age}</p>
-      <p>Estado: {active ? "Activo" : "Inactivo"}</p>
+      <UserState active={active} />
     </div>
   );
 });

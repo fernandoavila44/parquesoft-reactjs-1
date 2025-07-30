@@ -19,11 +19,11 @@ const Layout: React.FC = () => {
 
   // 🔹 useMemo: Memoriza el cálculo de "activeUsersCount" para evitar recalcularlo innecesariamente
   const activeUsersCount = useMemo(() => {
-    console.log("Calculando usuarios activos...");
+    // console.log("Calculando usuarios activos...");
     return users.filter((user) => user.active).length;
   }, [users]); // Solo recalcula si `users` cambia
 
-  console.log("render")
+  // console.log("render")
   return (
     <div>
       <h2>Lista de Usuarios</h2>

@@ -1,7 +1,6 @@
-import Content from "./components/content";
+import Content from "./components/Content";
 import Navbar from "./components/Navbar";
 import { ThemeProvider } from "./context/ThemeContext";
-
 
 const Layout = () => {
   return (

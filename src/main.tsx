@@ -24,6 +24,9 @@ import Clase4Practica from './clases/clase4/practica/index.tsx'
 import Clase5Layout from './routes/Clase5Layout.tsx'
 import Clase5Teoria from './clases/clase5/teoria/index.tsx'
 import Clase5Practica from './clases/clase5/practica/index.tsx'
+import Clase6Teoria from './clases/clase6/teoria/index.tsx'
+import Clase6Layout from './routes/Clase6Layout.tsx'
+import Clase6Practica from './clases/clase6/practica/index.tsx'
 
 const rootElement = document.getElementById('root')
 if (!rootElement) {
@@ -68,6 +71,12 @@ createRoot(rootElement).render(
             <Route path="teoria" element={<Clase5Teoria />} />
             <Route path="practica" element={<Clase5Practica />} />
             <Route index element={<Clase5Teoria />} /> {/* Default to teoria */}
+          </Route>
+          {/* Clase 6 Routes */}
+          <Route path="clase6" element={<Clase6Layout />}>
+            <Route path="teoria" element={<Clase6Teoria />} />
+            <Route path="practica" element={<Clase6Practica />} />
+            <Route index element={<Clase6Teoria />} /> {/* Default to teoria */}
           </Route>
         </Route>
       </Routes>

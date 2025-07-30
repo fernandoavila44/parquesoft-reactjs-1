@@ -1,20 +1,27 @@
 // ThemeContext.tsx
 import React, { createContext, useState, useContext } from 'react';
 
-type Theme = 'light' | 'dark';
+type Theme = 'light' | 'dark'; //union types
 
 interface ThemeContextType {
   theme: Theme;
   toggleTheme: () => void;
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+const initThemeContext: ThemeContextType = {
+  theme: 'dark',
+  toggleTheme: () => { }
+}
+
+const ThemeContext = createContext<ThemeContextType>(initThemeContext);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  //Children es una palabra reservada de react y hace referencia a los componentes que van a ser envueltos por el componente
+  //padre
   const [theme, setTheme] = useState<Theme>('light');
 
   const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
+    setTheme((prevValue) => prevValue === 'light' ? 'dark' : 'light');
   };
 
   return (

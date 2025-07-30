@@ -14,6 +14,7 @@ function App() {
         <NavLink to="/clase3">Ciclo de vida y eventos</NavLink>
         <NavLink to="/clase4">Hooks de performance</NavLink>
         <NavLink to="/clase5">Props Drilling y useContext</NavLink>
+        <NavLink to="/clase6">useEffect y data fetching</NavLink>
       </nav>
 
       <main style={{ padding: "20px" }}>
