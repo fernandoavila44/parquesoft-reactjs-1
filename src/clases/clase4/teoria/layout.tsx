@@ -23,6 +23,7 @@ const Layout: React.FC = () => {
     return users.filter((user) => user.active).length;
   }, [users]); // Solo recalcula si `users` cambia
 
+  console.log("render")
   return (
     <div>
       <h2>Lista de Usuarios</h2>

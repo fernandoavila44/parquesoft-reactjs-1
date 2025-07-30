@@ -14,7 +14,8 @@ const Card: React.FC<CardProps> = React.memo(({
   active,
   onClick
 }) => {
-  console.log(`Renderizando Card ${id}`); // Solo se muestra si cambian sus props
+  console.log(`Renderizando Card ${id}`);
+  // Solo se muestra si cambian sus props
 
   return (
     <div
@@ -24,7 +25,8 @@ const Card: React.FC<CardProps> = React.memo(({
         margin: "10px",
         borderRadius: "8px",
         backgroundColor: active ? "#e6f7ff" : "#f9f9f9",
-        cursor: "pointer"
+        cursor: "pointer",
+        color: "black"
       }}
       onClick={onClick}
     >
