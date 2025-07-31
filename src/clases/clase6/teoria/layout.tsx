@@ -45,9 +45,19 @@ const PostsList: React.FC = () => {
   return (
     <div>
       <h1>Posts de JSONPlaceholder</h1>
-      <ul>
+      <ul style={{
+        listStyleType: 'none'
+      }}>
         {posts.map((post) => (
-          <li key={post.id}>
+          <li
+            style={{
+              border: "1px solid #ccc",
+              padding: "16px",
+              margin: "10px",
+              borderRadius: "8px",
+            }}
+            key={post.id}
+          >
             <h2>{post.title}</h2>
             <p>{post.body}</p>
           </li>
