@@ -13,7 +13,7 @@ const initThemeContext: ThemeContextType = {
   toggleTheme: () => { }
 }
 
-const ThemeContext = createContext<ThemeContextType>(initThemeContext);
+export const ThemeContext = createContext<ThemeContextType>(initThemeContext);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   //Children es una palabra reservada de react y hace referencia a los componentes que van a ser envueltos por el componente

@@ -1,7 +1,9 @@
-import { useTheme } from "../context/ThemeContext";
+import { useContext } from "react";
+import { ThemeContext, useTheme } from "../context/ThemeContext";
 
 const Navbar = () => {
-  const { theme, toggleTheme } = useTheme();
+  // const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
     <nav style={{ background: theme === 'light' ? '#fff' : '#333', color: theme === 'light' ? '#000' : '#fff' }}>

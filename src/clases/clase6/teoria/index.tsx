@@ -4,7 +4,7 @@ const Clase6Teoria = () => {
   return (
     <div>
       <h1>Teoría: useEffect y data fetching </h1>
-      <p>Aquí va la teoría sobre prop useEffect y data fetching</p>
+      <p>Aquí va la teoría sobre useEffect y data fetching</p>
       <PostsList />
     </div>
   );

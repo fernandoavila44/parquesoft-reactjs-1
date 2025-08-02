@@ -11,6 +11,7 @@ const PostsList: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  //Side effects
   useEffect(() => {
     // Función para hacer la petición
     const fetchPosts = async () => {

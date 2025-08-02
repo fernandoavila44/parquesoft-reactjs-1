@@ -1,7 +1,9 @@
-import { useTheme } from "../context/ThemeContext";
+import { useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext";
 
 const Content = () => {
-  const { theme } = useTheme();
+  // const { theme } = useTheme();
+  const { theme } = useContext(ThemeContext);
 
   return (
     <div style={{
