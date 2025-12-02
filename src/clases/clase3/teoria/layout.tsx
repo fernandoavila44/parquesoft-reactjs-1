@@ -3,8 +3,10 @@ import Card from "./componentes/Card";
 import { User } from "./componentes/card.interface";
 
 const Users: React.FC = () => {
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
+  const [selectedUser, setSelectedUser] = useState<null | User>(null);
+
+  console.log(selectedUser)
   // Array de objetos tipado como User[]
   const users: User[] = [
     { id: 1, firstName: "Andres", lastName: "Garcia", age: 36, active: true },
@@ -12,7 +14,7 @@ const Users: React.FC = () => {
     { id: 3, firstName: "Carlos", lastName: "Martínez", age: 42, active: true },
   ];
 
-  const handleSelectUser = (user: User) => {
+  const handleSelectedUser = (user: User) => {
     setSelectedUser(user);
   };
 
@@ -28,7 +30,7 @@ const Users: React.FC = () => {
             lastName={user.lastName}
             age={user.age}
             active={user.active}
-            onClick={() => handleSelectUser(user)}
+            onSelectedUser={() => handleSelectedUser(user)}
           />
         ))}
       </div>

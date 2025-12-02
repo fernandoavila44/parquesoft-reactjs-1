@@ -4,5 +4,5 @@ export interface User {
   lastName: string;
   age: number;
   active: boolean;
-  onClick?: () => void;
+  onClick?: (user: User) => void;
 }

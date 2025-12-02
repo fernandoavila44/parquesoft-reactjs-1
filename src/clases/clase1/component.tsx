@@ -6,8 +6,8 @@ const JSX = () => {
   const isMateOk = 1 + 1 === 2;
   console.log(isMateOk)
 
-  function handleClick(value) {
-    console.log('click', value)
+  const handleClick = () => {
+    console.log('click')
   }
 
   const char = 'a'
@@ -20,9 +20,7 @@ const JSX = () => {
     optionalJSX = <p>No es una a</p>
   } // ver donde se usa abajo
 
-
   const styles = { color: "red", fontSize: "20px" };
-
 
   // pero dentro del return solo podemos escribir expresiones
   // no podemos escribir flujos de control como if, for, while, etc
@@ -30,19 +28,19 @@ const JSX = () => {
   // con JSX podemos escribir HTML dentro de JS :D
   // JsData();
   return (
-    <>
+    <div>
       <h1>My App</h1>
-      {/**los atributos en JSX se escriben en camelCase */}
+      {/**los atributos en JSX se escriben en camelCase*/}
       {/**el atributo className reemplaza a class */}
       <p className="paragraph-class">Some content</p>
       {/*podemos mandar funciones como atributos*/}
       {/*ojo a no poner los parentesis, solo el nombre de la funcion (la referencia) */}
-      <button onClick={handleClick}>Click1</button>
+      <button onClick={handleClick} >Click1</button>
       {/* puedo pasarle parametros a la funcion */}
       {/* necesito una funcion anonima que invoque a la funcion con los parametros */}
-      <button onClick={() => handleClick('hola')}>Click2</button>
+      <button onClick={() => handleClick()}>Click2</button>
       {/*podemos escribir JS dentro de JSX*/}
-      {32 + 32}
+      {char === "a" ? <p>es a</p> : <span>no es a</span>}
       {/*podemos invocar funciones que retornen JSX*/}
       {Title()}
       {/*podemos utilizar funciones como componentes (deben empezar con mayusculas)*/}
@@ -53,7 +51,7 @@ const JSX = () => {
       {optionalJSX}
       <p style={styles}>Texto rojo</p>
       <p style={{ color: "blue" }}>Texto azul</p>
-    </>
+    </div>
   )
 }
 

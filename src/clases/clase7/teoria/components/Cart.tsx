@@ -3,7 +3,7 @@ import { useCart } from '../context/CartContext';
 
 export const Cart: React.FC = () => {
   const { state, dispatch } = useCart();
-
+  console.log(state)
   return (
     <div>
       <h2>Carrito</h2>

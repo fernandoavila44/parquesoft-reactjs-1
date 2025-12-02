@@ -1,7 +1,7 @@
 // ThemeContext.tsx
 import React, { createContext, useState, useContext } from 'react';
 
-type Theme = 'light' | 'dark'; //union types
+type Theme = 'light' | 'dark' | null;
 
 interface ThemeContextType {
   theme: Theme;
@@ -9,7 +9,7 @@ interface ThemeContextType {
 }
 
 const initThemeContext: ThemeContextType = {
-  theme: 'dark',
+  theme: null,
   toggleTheme: () => { }
 }
 
@@ -21,7 +21,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [theme, setTheme] = useState<Theme>('light');
 
   const toggleTheme = () => {
-    setTheme((prevValue) => prevValue === 'light' ? 'dark' : 'light');
+    setTheme((prevValue) => (prevValue === 'light' ? 'dark' : 'light'));
   };
 
   return (

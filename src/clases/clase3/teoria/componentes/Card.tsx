@@ -7,7 +7,7 @@ const Card: React.FC<User> = ({
   lastName,
   age,
   active,
-  onClick
+  onSelectedUser
 }) => {
   return (
     <div
@@ -20,7 +20,7 @@ const Card: React.FC<User> = ({
         cursor: "pointer",
         color: '#000'
       }}
-      onClick={onClick}
+      onClick={onSelectedUser}
     >
       <h3>
         {firstName} {lastName}

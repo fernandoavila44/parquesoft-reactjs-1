@@ -1,5 +1,5 @@
-import React from 'react';
-import { Product, useCart } from '../context/CartContext';
+import React, { useContext } from 'react';
+import { CartContext, Product, useCart } from '../context/CartContext';
 
 const products: Product[] = [
   { id: 1, name: 'Camiseta React', price: 25 },
@@ -8,7 +8,10 @@ const products: Product[] = [
 ];
 
 export const ProductList: React.FC = () => {
+
   const { dispatch } = useCart();
+
+  // const { dispatch } = useContext(CartContext);
 
   return (
     <div>

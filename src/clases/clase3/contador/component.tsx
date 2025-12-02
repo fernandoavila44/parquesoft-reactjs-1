@@ -1,16 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-interface CounterProps {
-  initialValue?: number;
-}
 
-const FunctionalCounter: React.FC<CounterProps> = ({ initialValue = 0 }) => {
+const FunctionalCounter: React.FC = () => {
 
-  const [count, setCount] = useState(initialValue);
-
-  useEffect(() => {
-    console.log('hago fetch al backend');
-  }, [count]);
+  const [count, setCount] = useState(0);
 
   const handleIncrement = () => {
     setCount(count + 1)
@@ -19,16 +12,15 @@ const FunctionalCounter: React.FC<CounterProps> = ({ initialValue = 0 }) => {
   const handleDecrement = () => {
     setCount(count - 1)
   }
-
-  console.log('Render - Renderizando el componente');
-
+  console.log("Renderizando")
+  console.log(count)
   return (
     <div>
       <h2>Contador: {count}</h2>
-      <button onClick={handleIncrement}>
+      <button >
         Incrementar
       </button>
-      <button onClick={handleDecrement}>
+      <button>
         Decrementar
       </button>
     </div>

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import useFetch from './hooks/useFetch';
 
 interface Post {
   id: number;
@@ -7,38 +8,8 @@ interface Post {
 }
 
 const PostsList: React.FC = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
 
-  //Side effects
-  useEffect(() => {
-    // Función para hacer la petición
-    const fetchPosts = async () => {
-      try {
-        const response = await fetch(
-          'https://jsonplaceholder.typicode.com/posts'
-        );
-        if (!response.ok) {
-          throw new Error('Error al cargar los posts');
-        }
-        const data = await response.json();
-        setPosts(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Error desconocido');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPosts();
-
-    // Cleanup (opcional): Cancela la petición si el componente se desmonta
-    return () => {
-      // Ejemplo: Abortar fetch si se usa AbortController
-      console.log('Cleanup: Petición completada o cancelada');
-    };
-  }, []); // Dependencias vacías = solo al montar el componente
+  const { data, loading, error } = useFetch<Post[]>("https://jsonplaceholder.typicode.com/posts");
 
   if (loading) return <p>Cargando posts...</p>;
   if (error) return <p style={{ color: 'red' }}>Error: {error}</p>;
@@ -49,7 +20,7 @@ const PostsList: React.FC = () => {
       <ul style={{
         listStyleType: 'none'
       }}>
-        {posts.map((post) => (
+        {data?.map((post) => (
           <li
             style={{
               border: "1px solid #ccc",

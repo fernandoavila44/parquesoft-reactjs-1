@@ -2,6 +2,7 @@ import React from "react";
 import { User } from "./card.interface";
 
 const Card: React.FC<User> = ({ id, firstName, lastName, age, active }) => {
+  console.log(active)
   return (
     <div
       style={{

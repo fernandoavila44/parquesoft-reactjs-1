@@ -1,10 +1,10 @@
 // existen 2 tipos de imports
 // import default, import named
 // import default
-import alfabeto from "./fn"
+import array, { names } from "./fn"
 // podemos nombrar la variable como queramos
 // import named
-import { names, trollNames } from "./fn"
+
 // debemos usar el mismo nombre que el exportado
 
 const JsData = () => {
@@ -35,7 +35,8 @@ const JsData = () => {
     name: "charizard",
     recommended: true,
   }
-  const nuevoPokemon = { ...pokimon }
+
+  const nuevoPokemon = { ...pokimon };
 
   console.log(pokimon, nuevoPokemon)
   nuevoPokemon.id = 10;
@@ -44,6 +45,10 @@ const JsData = () => {
 
   //arreglos
   const naturales = [1, 2, 3, 4, 5]
+  const copyNaturales1 = [...naturales]
+  console.log({ "naturales": naturales, copy: copyNaturales1 })
+  naturales[2] = 876
+  console.log({ "naturales": naturales, copy: copyNaturales1 })
   // internamente los arreglos son objetos
   // con claves numericas y valores
   // pero las propiedades y metodos son diferentes
@@ -87,16 +92,17 @@ const JsData = () => {
     moves: ["fire blast", "wing attack", "fly"],
   }
 
-  const newPokimon = { ...charPokimon };
-  console.log(charPokimon)
-  charPokimon.stats.hp // 78
-  charPokimon.moves[0] // "fire blast"
+  const newPokimon = JSON.parse(JSON.stringify(charPokimon));
+  charPokimon.stats.hp = 100 // 78
+  charPokimon.moves[0] = "nuevo poder" // "fire blast"
+
+  console.log(charPokimon, newPokimon)
 
   // string builder / Template string
   const pet = "cats"
 
 
-  const message = `I have ${pet} and I love them`
+  const message = `I have ${pet === "cats" ? "Gato" : "Perro"} and I love them`
   const message2 = `I have ${pet} and I love them`
   console.log(message, message2)
   //---FUNCIONES---
