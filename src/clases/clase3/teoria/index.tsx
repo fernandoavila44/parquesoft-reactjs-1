@@ -6,8 +6,8 @@ const Clase3Teoria = () => {
     <div>
       <h1>Teoría: Ciclo de Vida y Eventos</h1>
       <p>Aquí va la teoría sobre ciclo de vida y eventos en React</p>
-      <FunctionalCounter />
-      {/* <Users /> */}
+      {/* <FunctionalCounter /> */}
+      <Users />
     </div>
   );
 };

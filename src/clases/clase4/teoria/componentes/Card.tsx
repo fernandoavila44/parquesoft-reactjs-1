@@ -3,7 +3,7 @@ import { User } from "./card.interface";
 import UserState from "./UserState";
 
 interface CardProps extends User {
-  onClick?: () => void;
+  onClick?: (user: User) => void;
 }
 
 // 🔹 React.memo evita re-renders si las props no cambian
@@ -18,6 +18,16 @@ const Card: React.FC<CardProps> = React.memo(({
   console.log(`Renderizando Card ${id}`);
   // Solo se muestra si cambian sus props
 
+  const handleClick = () => {
+    if (onClick)
+      onClick({
+        id,
+        firstName,
+        lastName,
+        age,
+        active,
+      })
+  }
   return (
     <div
       style={{
@@ -29,7 +39,7 @@ const Card: React.FC<CardProps> = React.memo(({
         cursor: "pointer",
         color: "black"
       }}
-      onClick={onClick}
+      onClick={handleClick}
     >
       <h3>{firstName} {lastName}</h3>
       <p>ID: {id}</p>

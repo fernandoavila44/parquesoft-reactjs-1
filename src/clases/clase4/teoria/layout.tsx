@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
 import Card from "./componentes/Card";
 import { User } from "./componentes/card.interface";
 
@@ -8,9 +8,12 @@ type Props = {
 const Layout: React.FC<Props> = ({ users }) => {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   // 🔹 useCallback: Memoriza la función para evitar recrearla en cada render
+  const [newState, setNesState] = useState(1);
+
   const handleClick = useCallback((user: User) => {
+    console.log(newState)
     setSelectedUser(user);
-  }, []); // Sin dependencias (solo se crea una vez)
+  }, []);  // Sin dependencias (solo se crea una vez)
 
   // 🔹 useMemo: Memoriza el cálculo de "activeUsersCount" para evitar recalcularlo innecesariamente
   const activeUsersCount = useMemo(() => {
@@ -29,7 +32,7 @@ const Layout: React.FC<Props> = ({ users }) => {
           <Card
             key={user.id}
             {...user}
-            onClick={() => handleClick(user)}
+            onClick={handleClick}
           />
         ))}
       </div>
