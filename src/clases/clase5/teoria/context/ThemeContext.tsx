@@ -18,6 +18,7 @@ export const ThemeContext = createContext<ThemeContextType>(initThemeContext);
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   //Children es una palabra reservada de react y hace referencia a los componentes que van a ser envueltos por el componente
   //padre
+
   const [theme, setTheme] = useState<Theme>('light');
 
   const toggleTheme = () => {

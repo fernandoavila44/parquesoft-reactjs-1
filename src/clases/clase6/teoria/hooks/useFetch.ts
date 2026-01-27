@@ -6,7 +6,7 @@ const useFetch = <T>(url: string) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log('Consultando el backend:', url);
+    console.log("Consultando datos del backend")
     const fetchData = async () => {
       try {
         setLoading(true);
@@ -14,24 +14,29 @@ const useFetch = <T>(url: string) => {
         const response = await fetch(url);
         console.log(response)
         if (!response.ok) {
-          throw new Error(`Error ${response.status}: ${response.statusText}`);
+          throw new Error("Error en la consulta al api")
         }
         const data = await response.json();
+        console.log(data)
         setData(data);
-      } catch (err: unknown) {
-        if (err instanceof Error && err.name !== 'AbortError') {
-          setError(err.message);
+      } catch (error: unknown) {
+        console.log(error)
+        if (error instanceof Error) {
+          setError(error.message)
         }
       } finally {
         setLoading(false);
       }
-    };
-
+    }
     fetchData();
-  }, [url]); // ✅ Ahora depende de la URL
+
+    return () => {
+      console.log("Se desmonto el componente")
+    }
+  }, [url]);
 
   return {
-    data: data, // Mejor usar "data" en lugar de "posts" para un hook genérico
+    data: data,
     loading,
     error
   };

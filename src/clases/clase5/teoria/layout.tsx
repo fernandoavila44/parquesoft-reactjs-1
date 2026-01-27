@@ -4,15 +4,10 @@ import { ThemeProvider } from "./context/ThemeContext";
 
 const Layout = () => {
   return (
-    <>
-      <ThemeProvider>
-        <Navbar />
-        <Content />
-        <Content />
-        <Content />
-        <Content />
-      </ThemeProvider>
-    </>
+    <ThemeProvider>
+      <Navbar />
+      <Content />
+    </ThemeProvider>
   );
 };
 

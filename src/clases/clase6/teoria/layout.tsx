@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useFetch from './hooks/useFetch';
 
 interface Post {
@@ -9,7 +9,7 @@ interface Post {
 
 const PostsList: React.FC = () => {
 
-  const { data, loading, error } = useFetch<Post[]>("https://jsonplaceholder.typicode.com/posts");
+  const { data, loading, error } = useFetch<Post[]>('https://jsonplaceholder.typicode.com/posts');
 
   if (loading) return <p>Cargando posts...</p>;
   if (error) return <p style={{ color: 'red' }}>Error: {error}</p>;
