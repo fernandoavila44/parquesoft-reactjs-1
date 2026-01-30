@@ -33,6 +33,8 @@ import Clase7Layout from './routes/Clase7Layout.tsx'
 import Clase8Practica from './clases/clase8/practica/index.tsx'
 import Clase8Teoria from './clases/clase8/teoria/index.tsx'
 import Clase8Layout from './routes/Clase8Layout.tsx'
+import Clase9Layout from './routes/Clase9Layout.tsx'
+import Clase9Teoria from './clases/clase9/teoria/index.tsx'
 
 const rootElement = document.getElementById('root')
 if (!rootElement) {
@@ -95,6 +97,12 @@ createRoot(rootElement).render(
             <Route path="teoria" element={<Clase8Teoria />} />
             <Route path="practica/*" element={<Clase8Practica />} />
             <Route index element={<Clase8Teoria />} /> {/* Default to teoria */}
+          </Route>
+
+          {/* Clase 9 Routes */}
+          <Route path="clase9" element={<Clase9Layout />}>
+            <Route path="teoria" element={<Clase9Teoria />} />
+            <Route index element={<Clase9Teoria />} />
           </Route>
         </Route>
       </Routes>

@@ -17,6 +17,7 @@ function App() {
         <NavLink to="/clase6">useEffect y data fetching</NavLink>
         <NavLink to="/clase7">useReducer y estados complejos</NavLink>
         <NavLink to="/clase8">React Router - Navegacion</NavLink>
+        <NavLink to="/clase9">Patrones Avanzados</NavLink>
       </nav>
 
       <main style={{ padding: "20px" }}>

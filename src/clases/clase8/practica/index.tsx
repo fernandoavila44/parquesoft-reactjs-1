@@ -211,7 +211,8 @@ const PracticaHome = () => {
                 padding: '20px',
                 borderRadius: '8px',
                 marginTop: '20px',
-                borderLeft: '4px solid #007bff'
+                borderLeft: '4px solid #007bff',
+                color: '#000'
             }}>
                 <h3>🎯 Objetivos de la Práctica</h3>
                 <ul style={{ lineHeight: '1.8' }}>
@@ -248,7 +249,8 @@ const PracticaHome = () => {
                 backgroundColor: '#fff3cd',
                 padding: '20px',
                 borderRadius: '8px',
-                borderLeft: '4px solid #ffc107'
+                borderLeft: '4px solid #ffc107',
+                color: '#000'
             }}>
                 <h4>💡 Consejos:</h4>
                 <ul style={{ lineHeight: '1.8' }}>
@@ -272,7 +274,8 @@ const ExerciseCard = ({ title, description, link, linkText }: {
             backgroundColor: 'white',
             padding: '20px',
             borderRadius: '8px',
-            border: '1px solid #dee2e6'
+            border: '1px solid #dee2e6',
+            color: '#000'
         }}>
             <h4 style={{ marginTop: 0 }}>{title}</h4>
             <p style={{ color: '#6c757d' }}>{description}</p>

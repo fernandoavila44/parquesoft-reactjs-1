@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
 const HooksExamples = () => {
   const [selectedHook, setSelectedHook] = useState<string>('useNavigate');
@@ -140,6 +141,22 @@ function SearchFilter() {
     }
   };
 
+  const location = useLocation();
+  console.log(location)
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // Leer parámetros
+  const query = searchParams.get('q');
+  const page = searchParams.get('page') || '1';
+
+  console.log(query)
+  console.log(page)
+
+  // Actualizar parámetros
+  const handleSearch = (term: string) => {
+    setSearchParams({ q: term, page: '1' });
+  };
   const currentHook = hooks[selectedHook as keyof typeof hooks];
 
   return (
