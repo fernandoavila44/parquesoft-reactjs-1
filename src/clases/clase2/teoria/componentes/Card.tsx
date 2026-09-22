@@ -2,7 +2,6 @@ import React from "react";
 import { User } from "./card.interface";
 
 const Card: React.FC<User> = ({ id, firstName, lastName, age, active }) => {
-  console.log(active)
   return (
     <div
       style={{
@@ -18,7 +17,7 @@ const Card: React.FC<User> = ({ id, firstName, lastName, age, active }) => {
         {firstName} {lastName}
       </h3>
       <p>ID: {id}</p>
-      <p>Edad: {age}</p>
+      <p>Edad: {age ?? "sin registro"}</p>
       <p>Estado: {active ? "Activo" : "Inactivo"}</p>
     </div>
   );

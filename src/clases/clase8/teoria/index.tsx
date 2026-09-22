@@ -1,16 +1,17 @@
 import Layout from "./layout";
 
 const Clase8Teoria = () => {
-    return (
-        <div>
-            <h1>Teoría: React Router - Rutas, Hooks y Navegación</h1>
-            <p>
-                React Router es la biblioteca estándar para manejar navegación en aplicaciones React.
-                Permite crear aplicaciones de una sola página (SPA) con múltiples vistas.
-            </p>
-            <Layout />
-        </div>
-    );
+  return (
+    <article>
+      <p>
+        <code>memo</code>, <code>useCallback</code> y <code>useMemo</code> evitan
+        trabajo cuando un padre se vuelve a pintar y los hijos, o un cálculo,
+        no cambiaron. Si el botón de render no mueve los números de la derecha,
+        el memo está haciendo su trabajo.
+      </p>
+      <Layout />
+    </article>
+  );
 };
 
 export default Clase8Teoria;

@@ -1,7 +1,10 @@
-//solamente se puede exportar COMO DEFAULT una sola cosa por archivo
-const array = ['a', 'b', 'c']
-//pero se pueden exportar varias cosas como NAMED EXPORTS
-export const names = ["John", "Rose", "Dave", "Jane"]
-export const trollNames = ["Karkat", "Terezi", "Vriska", "Sollux"]
+// Un archivo puede tener un solo export default.
+// El nombre al importar lo eliges tú.
+const frutas = ["manzana", "banano", "pera"];
 
-export default array
+// Los named exports pueden ser varios.
+// Al importarlos hay que usar el mismo nombre (o renombrarlo con "as").
+export const nombres = ["Ana", "Luis", "Sofía"];
+export const ciudades = ["Bogotá", "Medellín", "Cali"];
+
+export default frutas;

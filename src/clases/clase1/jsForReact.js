@@ -1,267 +1,98 @@
-// existen 2 tipos de imports
-// import default, import named
-// import default
-import array, { names } from "./fn"
-// podemos nombrar la variable como queramos
-// import named
+// JavaScript que vas a usar todo el tiempo en React.
+// Este archivo no pinta nada: solo calcula.
+// La clase 1 llama estas funciones y muestra el resultado.
 
-// debemos usar el mismo nombre que el exportado
+export const nombre = "Ada";
 
-const JsData = () => {
-  //constante
-  const nombre = "dave"
-  //no la puedo modificar
-  //💥 nombre = "rose" // Cannot assign to 'nombre' because it is a constant
+// let se puede reasignar. const no.
+// En React, para que la pantalla cambie, no reasignamos: avisamos con setEstado.
+export function cumplirAnios(edad) {
+  let actual = edad;
+  actual = actual + 1;
+  return actual;
+}
 
-  //variable
-  let edad = 30
-  //la puedo modificar
-  edad = 60
+// El spread copia el primer nivel.
+// vida es un número: la copia tiene el suyo.
+// stats es un objeto: original y copia comparten el mismo.
+export function copiaSuperficial() {
+  const pokemon = {
+    nombre: "Charizard",
+    vida: 78,
+    stats: { ataque: 84 },
+  };
 
-  // los tipos simples son inmutables
-  let copyEdad = edad
-  console.log(copyEdad)
-  copyEdad = 100
-  console.log({ edad, copyEdad })
-  // { edad: 60, copyEdad: 100 }
-  // los tipos simples son: number, string, boolean, undefined, null
-  // si, string es un tipo simple en js 🙄, no es un objeto
+  const copia = { ...pokemon };
+  copia.vida = 90;
+  copia.stats.ataque = 100;
 
-  // ademas tenemos arreglos y objetos
+  return {
+    original: { vida: pokemon.vida, ataque: pokemon.stats.ataque },
+    copia: { vida: copia.vida, ataque: copia.stats.ataque },
+  };
+}
 
-  // objetos
-  const pokimon = {
-    id: 6,
-    name: "charizard",
-    recommended: true,
-  }
+// Para copiar también lo de adentro, hay que copiar cada nivel.
+export function copiaProfunda() {
+  const pokemon = {
+    nombre: "Charizard",
+    vida: 78,
+    stats: { ataque: 84 },
+  };
 
-  const nuevoPokemon = { ...pokimon };
+  const copia = {
+    ...pokemon,
+    stats: { ...pokemon.stats },
+  };
+  copia.vida = 90;
+  copia.stats.ataque = 100;
 
-  console.log(pokimon, nuevoPokemon)
-  nuevoPokemon.id = 10;
-  console.log(pokimon, nuevoPokemon)
-  // los objetos son tuplas de clave-valor (key-value)
+  return {
+    original: { vida: pokemon.vida, ataque: pokemon.stats.ataque },
+    copia: { vida: copia.vida, ataque: copia.stats.ataque },
+  };
+}
 
-  //arreglos
-  const naturales = [1, 2, 3, 4, 5]
-  const copyNaturales1 = [...naturales]
-  console.log({ "naturales": naturales, copy: copyNaturales1 })
-  naturales[2] = 876
-  console.log({ "naturales": naturales, copy: copyNaturales1 })
-  // internamente los arreglos son objetos
-  // con claves numericas y valores
-  // pero las propiedades y metodos son diferentes
+export function copiaDeArreglo() {
+  const naturales = [1, 2, 3, 4, 5];
+  const copia = [...naturales];
+  copia[0] = 9;
 
-  //para acceder a las propiedades de un objeto
-  //se usa la notación de punto o la notación de corchetes
-  pokimon.id // 6
-  pokimon["id"] // 6
+  return { naturales, copia };
+}
 
-  // para acceder a los elementos de un arreglo
-  //se usa la notación de corchetes
-  naturales[0] // 6
-  //💥 naturales.0 // Unexpected keyword or identifier
+export function sumar(a, b) {
+  return a + b;
+}
 
-  // no puedo modificar la referencia al arreglo, pero si sus elementos
-  // const solo afecta a la referencia en memoria del arreglo
-  //💥 naturales = [6, 2, 3, 4, 5]
-  naturales[0] = 6 // [6, 2, 3, 4, 5]
+export function multiplicar(a, b) {
+  return a * b;
+}
 
-  const copyNaturales = [...naturales]
-  copyNaturales[0] = 3
-  console.log({ naturales, copyNaturales })
-  // { naturales: [3, 2, 3, 4, 5], copyNaturales: [3, 2, 3, 4, 5] }
-  // una asignacion simple solo copia la referencia en memoria, OJO!
+// Una función puede recibir otra función.
+// En React, onClick={manejarClick} entrega la función; no la ejecuta todavía.
+export function aplicar(operacion, a, b) {
+  return operacion(a, b);
+}
 
-  // podemos anidar objetos y arrays indefinidamente
-  const charPokimon = {
-    id: 6,
-    name: "charizard",
-    recommended: true,
-    stats: {
-      hp: 78,
-      attack: 84,
-      defense: 78,
-      speed: 100,
-      otraCosa: {
-        key1: 1,
-        key2: 2
-      }
-    },
-    moves: ["fire blast", "wing attack", "fly"],
-  }
+export function leerPokemon() {
+  const pokemon = { id: 6, nombre: "Charizard", tipo: "Fuego" };
+  const { nombre: nombrePokemon, tipo } = pokemon;
 
-  const newPokimon = JSON.parse(JSON.stringify(charPokimon));
-  charPokimon.stats.hp = 100 // 78
-  charPokimon.moves[0] = "nuevo poder" // "fire blast"
+  const movimientos = ["Lanzallamas", "Vuelo", "Garra"];
+  const [primero, , tercero] = movimientos;
+  const movimientosExtra = [...movimientos, "Giro fuego"];
 
-  console.log(charPokimon, newPokimon)
+  return { nombre: nombrePokemon, tipo, primero, tercero, movimientosExtra };
+}
 
-  // string builder / Template string
-  const pet = "cats"
+// map transforma y conserva la cantidad.
+// filter se queda con los que cumplen la condición.
+// reduce junta todo en un solo valor.
+export function transformar(numeros) {
+  const masUno = numeros.map((numero) => numero + 1);
+  const mayoresA50 = numeros.filter((numero) => numero > 50);
+  const suma = numeros.reduce((total, numero) => total + numero, 0);
 
-
-  const message = `I have ${pet === "cats" ? "Gato" : "Perro"} and I love them`
-  const message2 = `I have ${pet} and I love them`
-  console.log(message, message2)
-  //---FUNCIONES---
-
-  function sumaFn(a, b) {
-    return a + b
-  }
-
-  const suma = (a, b) => {
-    return a + b
-  }
-  // ambas son equivalentes
-
-  suma(1, 2) // 3
-  sumaFn(1, 2) // 3
-
-  // cuando necesitamos enviar muchos params a una funcion
-  // podemos usar un objeto
-  const sumaConDecimales = (props) => {
-    const suma = props.a + props.b + props.c
-    return suma.toFixed(props.decimales || 0)
-  }
-
-  console.log(sumaConDecimales({
-    a: 1,
-    b: 2,
-    c: 5,
-    decimales: 2
-  })) // "8.00"
-
-
-  // necesitamos saber que props quiere recibir la funcion
-  // para poder utilizarla correctamente
-  // pero no necesitamos saber como esta implementada :D
-
-  //puedo asignar funciones a objetos y variables
-  const functions = {
-    suma1: suma,
-    sumaConDecimales: sumaConDecimales,
-  }
-  functions.suma1(1, 2) // 3
-
-  //puedo enviar funciones como parametros
-  const fnConCallback = (callback) => {
-    return callback(1, 2)
-  }
-
-  fnConCallback(suma) // 3
-
-  function multiplicacion(a, b) {
-    return a * b
-  }
-
-  fnConCallback(multiplicacion) // 2
-
-  //---DESTRUCTURING---
-
-  // si me da pereza escribir
-  pokimon.id
-  pokimon.name
-  // puedo usar destructuring
-  const { id, name, stats: attack } = pokimon
-  // esto es equivalente a
-  // const id = pokimon.id
-  // const name = pokimon.name
-  // debo respetar el nombre de las keys del objeto
-
-  //con arreglos
-  const [first, second] = naturales
-  // esto es equivalente a
-  // const first = naturales[0]
-  // const second = naturales[1]
-  // debo respetar el orden de los elementos del arreglo
-  const [, segundo, , cuarto] = naturales
-  //si dejo un espacio en blanco, ignora ese elemento
-
-  //spread operator
-  const extendedNaturales = [...naturales, 6, 7, 8]
-  // esto es equivalente a volcar el contenido de un arreglo
-  extendedNaturales[1] = 100
-  console.log({ naturales, extendedNaturales })
-  // { naturales: [1, 2, 3, 4, 5], extendedNaturales: [1, 100, 3, 4, 5, 6, 7, 8] }
-  // el spread operator crea una copia ""superficial"" del arreglo original
-  // si el arreglo contiene objetos, estos no se copian, solo se copia la referencia en memoria
-  // puedo usar esto para clonar arreglos u objetos
-  const copyPokimon = { ...charPokimon }
-  copyPokimon.id = 100
-  console.log(charPokimon.id, copyPokimon.id)
-  // 6 100
-  copyPokimon.stats.hp = 100
-  console.log(charPokimon.stats.hp, copyPokimon.stats.hp)
-  // 100 100
-
-
-  //para recorrer un arreglo
-  for (let i = 0; i < naturales.length; i++) {
-    console.log(naturales[i])
-  }
-  //o
-  for (const num of naturales) {
-    console.log(num)
-  }
-
-  //pero esto no puedo utilizarlo en jsx
-  //los arreglos tienen varios metodos que me ayudan a recorrerlos
-  //forEach, map, filter, reduce, find, findIndex, some, every, sort, reverse
-  //veamos solo algunos
-  naturales.forEach((num) => console.log(num))
-
-  //for each esta pensado para ser super genérico, no devuelve nada
-  //solo recorre el arreglo y ejecuta una funcion por cada elemento
-
-  const newArr = [23, 56, 78, 100, 205]
-  const evenNumbers = newArr.map(
-    (num) => {
-      return num + 1
-    }
-  )
-  console.log(evenNumbers)
-  //map devuelve un nuevo arreglo con los elementos transformados
-  //IMPORTANTE: se espera que el arreglo devuelto tenga la misma cantidad de elementos que el original
-  //si necesitamos un return condicional, o si no pretendemos retornar nada, usemos otras opciones
-
-  const bigNumbers = newArr.filter((num) => {
-    if (num > 50) {
-      return true
-    }
-    return false
-  })
-  console.log(bigNumbers)
-  //filter devuelve un nuevo arreglo con los elementos que cumplan la condicion
-  //IMPORTANTE: se espera que el arreglo devuelto tenga la misma estructura que el original
-
-  const sum = newArr.reduce(
-    (acc, num) => {
-      return acc + num
-    },
-    0
-  )
-  console.log(sum)
-  //reduce devuelve UN VALOR, no un arreglo
-
-
-  //como itero un objeto?
-  //necesito algo que me convierta el objeto en un arreglo
-  //para eso existen tres funciones nativas
-  //Object.keys(obj) -> devuelve un arreglo con las propiedades del objeto
-  Object.keys(charPokimon)
-  //Object.values(obj) -> devuelve un arreglo con los valores del objeto
-  Object.values(charPokimon)
-  //Object.entries(obj) -> devuelve un arreglo con los pares [propiedad, valor] del objeto
-  Object.entries(charPokimon)
-  //a partir de aqui lo puedo recorrer igual que un arreglo
-
-  Object.entries(charPokimon).forEach(
-    ([key, value]) => { //uso destructuring para obtener los valores
-      console.log(`${key} -> ${value}`)
-    }
-  )
-};
-
-export default JsData;
+  return { masUno, mayoresA50, suma };
+}

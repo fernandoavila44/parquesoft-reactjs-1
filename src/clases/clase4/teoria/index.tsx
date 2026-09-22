@@ -1,21 +1,52 @@
-import { User } from "./componentes/card.interface";
-import Layout from "./layout";
+import { useState, type ReactNode } from "react";
+import { Estudio, Temario, type Tema } from "../../../components/aula/Aula";
+import EfectoSimple from "./temas/EfectoSimple";
+import PostsList from "./layout";
+import Limpieza from "./CleanupFunction";
+
+const temas: (Tema & { vista: ReactNode })[] = [
+  {
+    id: "efecto",
+    titulo: "El efecto",
+    resumen: "Después de pintar",
+    vista: <EfectoSimple />,
+  },
+  {
+    id: "datos",
+    titulo: "Datos remotos",
+    resumen: "Carga, error y lista",
+    vista: <PostsList />,
+  },
+  {
+    id: "limpieza",
+    titulo: "Limpieza",
+    resumen: "Cancelar al desmontar",
+    vista: <Limpieza />,
+  },
+];
 
 const Clase4Teoria = () => {
+  const [activo, setActivo] = useState(temas[0].id);
+  const tema = temas.find((item) => item.id === activo) ?? temas[0];
 
-  const users: User[] = [
-    { id: 1, firstName: "Andres", lastName: "Garcia", age: 36, active: true },
-    { id: 2, firstName: "María", lastName: "López", age: 25, active: false },
-    { id: 3, firstName: "Carlos", lastName: "Martínez", age: 42, active: true },
-    { id: 4, firstName: "Pepito", lastName: "Perez", age: 42, active: true },
-    { id: 5, firstName: "Pastor", lastName: "Lopez", age: 42, active: true },
-  ];
   return (
-    <div>
-      <h1>Teoría: Hooks de performance - useCallback, useMemo, React.Memo</h1>
-      <p>Aquí va la teoría sobre Hooks de performance - useCallback, useMemo, React.Memo</p>
-      <Layout users={users} />
-    </div>
+    <Estudio
+      menu={
+        <Temario
+          etiqueta="Efectos"
+          temas={temas}
+          activo={activo}
+          onElegir={setActivo}
+        />
+      }
+    >
+      <p>
+        Un efecto sincroniza el componente con algo de afuera: el título de la
+        pestaña, una API, un temporizador. Si el efecto deja algo andando, la
+        limpieza lo apaga.
+      </p>
+      {tema.vista}
+    </Estudio>
   );
 };
 

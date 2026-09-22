@@ -1,30 +1,42 @@
-import { NavLink, Outlet } from 'react-router-dom'
-import "./App.module.scss";
+import { NavLink, Outlet } from "react-router-dom";
+import { clases } from "./curso";
+import styles from "./App.module.scss";
 
 function App() {
-
   return (
-    <>
-      <nav>
-        <NavLink to="/" end>
-          Home
+    <div className={styles.shell}>
+      <aside className={styles.sidebar}>
+        <NavLink to="/" end className={styles.marca}>
+          <strong>Curso de React</strong>
+          <span>Elige un tema y léelo a la derecha</span>
         </NavLink>
-        <NavLink to="/clase1">JSX</NavLink>
-        <NavLink to="/clase2">Componentes</NavLink>
-        <NavLink to="/clase3">Ciclo de vida y eventos</NavLink>
-        <NavLink to="/clase4">Hooks de performance</NavLink>
-        <NavLink to="/clase5">Props Drilling y useContext</NavLink>
-        <NavLink to="/clase6">useEffect y data fetching</NavLink>
-        <NavLink to="/clase7">useReducer y estados complejos</NavLink>
-        <NavLink to="/clase8">React Router - Navegacion</NavLink>
-        <NavLink to="/clase9">Patrones Avanzados</NavLink>
-      </nav>
 
-      <main style={{ padding: "20px" }}>
+        <nav className={styles.menu} aria-label="Temas del curso">
+          {clases.map((clase) => (
+            <NavLink
+              key={clase.ruta}
+              to={clase.ruta}
+              className={({ isActive }) =>
+                isActive ? `${styles.enlace} ${styles.activo}` : styles.enlace
+              }
+            >
+              <span className={styles.numero}>
+                {String(clase.numero).padStart(2, "0")}
+              </span>
+              <span>
+                <strong>{clase.titulo}</strong>
+                <small>{clase.resumen}</small>
+              </span>
+            </NavLink>
+          ))}
+        </nav>
+      </aside>
+
+      <main className={styles.main}>
         <Outlet />
       </main>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;

@@ -1,28 +1,19 @@
-// ThemeContext.tsx
-import React, { createContext, useState, useContext } from 'react';
+import { createContext, useContext, useState, type ReactNode } from "react";
 
-type Theme = 'light' | 'dark' | null;
+type Theme = "light" | "dark";
 
-interface ThemeContextType {
+type ThemeContextType = {
   theme: Theme;
   toggleTheme: () => void;
-}
+};
 
-const initThemeContext: ThemeContextType = {
-  theme: null,
-  toggleTheme: () => { }
-}
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeContext = createContext<ThemeContextType>(initThemeContext);
-
-export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  //Children es una palabra reservada de react y hace referencia a los componentes que van a ser envueltos por el componente
-  //padre
-
-  const [theme, setTheme] = useState<Theme>('light');
+export const ThemeProvider = ({ children }: { children: ReactNode }) => {
+  const [theme, setTheme] = useState<Theme>("light");
 
   const toggleTheme = () => {
-    setTheme((prevValue) => (prevValue === 'light' ? 'dark' : 'light'));
+    setTheme((prevValue) => (prevValue === "light" ? "dark" : "light"));
   };
 
   return (
@@ -35,7 +26,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (!context) {
-    throw new Error('useTheme debe usarse dentro de un ThemeProvider');
+    throw new Error("useTheme debe usarse dentro de un ThemeProvider");
   }
   return context;
 };

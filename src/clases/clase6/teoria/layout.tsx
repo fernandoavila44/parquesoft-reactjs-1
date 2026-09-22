@@ -1,42 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import useFetch from './hooks/useFetch';
+import { CartProvider } from "./context/CartContext";
+import { ProductList } from "./components/ProductList";
+import { Cart } from "./components/Cart";
+import { Nota } from "../../../components/aula/Aula";
 
-interface Post {
-  id: number;
-  title: string;
-  body: string;
-}
-
-const PostsList: React.FC = () => {
-
-  const { data, loading, error } = useFetch<Post[]>('https://jsonplaceholder.typicode.com/posts');
-
-  if (loading) return <p>Cargando posts...</p>;
-  if (error) return <p style={{ color: 'red' }}>Error: {error}</p>;
-
+const Carrito = () => {
   return (
-    <div>
-      <h1>Posts de JSONPlaceholder</h1>
-      <ul style={{
-        listStyleType: 'none'
-      }}>
-        {data?.map((post) => (
-          <li
-            style={{
-              border: "1px solid #ccc",
-              padding: "16px",
-              margin: "10px",
-              borderRadius: "8px",
-            }}
-            key={post.id}
-          >
-            <h2>{post.title}</h2>
-            <p>{post.body}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <article>
+      <h2>El carrito ya no cabe en un solo useState</h2>
+      <p>
+        Agregar suma cantidad o inserta el producto. Quitar resta uno o borra
+        la fila. Vaciar vuelve a cero. Esas tres acciones viven en el reducer.
+        La lista y el carrito leen el mismo estado por el contexto de la clase
+        5.
+      </p>
+      <CartProvider>
+        <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
+          <ProductList />
+          <Cart />
+        </div>
+      </CartProvider>
+      <Nota>
+        El reducer no sabe nada de React. El provider solo guarda su resultado
+        y lo comparte.
+      </Nota>
+    </article>
   );
 };
 
-export default PostsList;
+export default Carrito;

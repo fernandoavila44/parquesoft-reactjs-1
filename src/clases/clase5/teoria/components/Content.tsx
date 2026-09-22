@@ -1,17 +1,22 @@
-import { useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import { useTheme } from "../context/ThemeContext";
 
 const Content = () => {
-  // const { theme } = useTheme();
-  const { theme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useTheme();
+  const oscuro = theme === "dark";
 
   return (
-    <div style={{
-      padding: '20px',
-      background: theme === 'light' ? '#f5f5f5' : '#222',
-      color: theme === 'light' ? '#000' : '#fff'
-    }}>
-      <p>Bienvenido a la aplicación. El tema actual es: {theme}.</p>
+    <div
+      style={{
+        padding: 12,
+        borderRadius: 10,
+        background: oscuro ? "#1e293b" : "#f8fafc",
+        color: oscuro ? "#f8fafc" : "#0f172a",
+      }}
+    >
+      <p>El hijo lee el tema con useTheme. Nadie se lo pasó por props.</p>
+      <button type="button" onClick={toggleTheme}>
+        Cambiar a {oscuro ? "claro" : "oscuro"}
+      </button>
     </div>
   );
 };

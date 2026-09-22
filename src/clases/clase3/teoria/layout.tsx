@@ -6,12 +6,10 @@ const Users: React.FC = () => {
 
   const [selectedUser, setSelectedUser] = useState<null | User>(null);
 
-  console.log(selectedUser)
-  // Array de objetos tipado como User[]
   const users: User[] = [
-    { id: 1, firstName: "Andres", lastName: "Garcia", age: 36, active: true, clicked: 0 },
-    { id: 2, firstName: "María", lastName: "López", age: 25, active: false, clicked: 0 },
-    { id: 3, firstName: "Carlos", lastName: "Martínez", age: 42, active: true, clicked: 0 },
+    { id: 1, firstName: "Andres", lastName: "Garcia", age: 36, active: true },
+    { id: 2, firstName: "María", lastName: "López", age: 25, active: false },
+    { id: 3, firstName: "Carlos", lastName: "Martínez", age: 42, active: true },
   ];
 
   const handleSelectedUser = (user: User) => {
@@ -20,13 +18,13 @@ const Users: React.FC = () => {
 
   return (
     <div>
-      <h2>Lista de Usuarios</h2>
+      <h2>El clic sube, el estado se queda en el padre</h2>
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         {users.map((user) => (
           <Card
             key={user.id}
-            onSelectedUser={() => handleSelectedUser(user)}
             {...user}
+            onSelectedUser={() => handleSelectedUser(user)}
           />
         ))}
       </div>

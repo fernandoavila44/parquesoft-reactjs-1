@@ -1,1 +1,0 @@
-//Tomar el codigo del ejercicio practico de clase 2 y agregar la seleccion de un producto

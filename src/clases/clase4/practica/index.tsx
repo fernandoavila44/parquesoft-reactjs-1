@@ -1,10 +1,19 @@
 const Clase4Practica = () => {
   return (
-    <div>
-      <h1>Clase 4 - Práctica: Hooks de performance - useCallback, useMemo, React.Memo</h1>
-      <p>Aquí van los ejercicios prácticos sobre Hooks de performance - useCallback, useMemo, React.Memo</p>
-      {/* Importa aquí los componentes de práctica como el contador */}
-    </div>
+    <article>
+      <h2>Usuarios con carga y error</h2>
+      <ol>
+        <li>
+          Pide <code>https://jsonplaceholder.typicode.com/users?_limit=3</code>{" "}
+          dentro de un <code>useEffect</code>.
+        </li>
+        <li>Muestra tres estados: cargando, error y la lista de nombres.</li>
+        <li>
+          Al desmontar el componente, cancela la petición con{" "}
+          <code>AbortController</code>.
+        </li>
+      </ol>
+    </article>
   );
 };
 

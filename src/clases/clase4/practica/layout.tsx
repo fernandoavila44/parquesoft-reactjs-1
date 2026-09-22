@@ -1,1 +1,0 @@
-// Basado en la implementacion de la clase 3, implementar useMemo, useCallback en el componente layout

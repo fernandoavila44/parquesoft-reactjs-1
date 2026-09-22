@@ -8,7 +8,6 @@ const Card: React.FC<User> = ({
   age,
   active,
   onSelectedUser,
-  clicked
 }) => {
   return (
     <div

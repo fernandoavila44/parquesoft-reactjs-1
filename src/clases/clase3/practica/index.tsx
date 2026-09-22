@@ -1,11 +1,19 @@
 const Clase3Practica = () => {
   return (
-    <div>
-      <h1>Clase 3 - Práctica: Ejercicios de Ciclo de Vida y Eventos</h1>
-      <p>Aquí van los ejercicios prácticos sobre hooks, eventos, etc.</p>
-      {/* Importa aquí los componentes de práctica como el contador */}
-
-    </div>
+    <article>
+      <h2>Seleccionar un producto</h2>
+      <p>Parte del catálogo de la clase 2.</p>
+      <ol>
+        <li>Agrega un estado <code>seleccionado</code> en la lista.</li>
+        <li>
+          Al hacer clic en una tarjeta, guarda ese producto. Muéstralo debajo
+          de la lista.
+        </li>
+        <li>
+          Agrega un input controlado que filtre los productos por nombre.
+        </li>
+      </ol>
+    </article>
   );
 };
 

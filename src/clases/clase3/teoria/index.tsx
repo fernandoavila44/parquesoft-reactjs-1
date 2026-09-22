@@ -1,14 +1,59 @@
-import FunctionalCounter from "../contador/component";
+import { useState, type ReactNode } from "react";
+import { Estudio, Nota, Temario, type Tema } from "../../../components/aula/Aula";
 import Users from "./layout";
+import Contador from "./temas/Contador";
+import Formulario from "./temas/Formulario";
+
+const temas: (Tema & { vista: ReactNode })[] = [
+  {
+    id: "contador",
+    titulo: "useState",
+    resumen: "El valor de este render",
+    vista: <Contador />,
+  },
+  {
+    id: "eventos",
+    titulo: "Eventos",
+    resumen: "El hijo avisa, el padre guarda",
+    vista: <Users />,
+  },
+  {
+    id: "formulario",
+    titulo: "Formulario",
+    resumen: "Input controlado",
+    vista: <Formulario />,
+  },
+];
 
 const Clase3Teoria = () => {
+  const [activo, setActivo] = useState(temas[0].id);
+  const tema = temas.find((item) => item.id === activo) ?? temas[0];
+
   return (
-    <div>
-      <h1>Teoría: Ciclo de Vida y Eventos</h1>
-      <p>Aquí va la teoría sobre ciclo de vida y eventos en React</p>
-      {/* <FunctionalCounter /> */}
-      <Users />
-    </div>
+    <Estudio
+      menu={
+        <Temario
+          etiqueta="Estado"
+          temas={temas}
+          activo={activo}
+          onElegir={setActivo}
+        />
+      }
+    >
+      <p>
+        El ciclo de vida de un componente de función llega con{" "}
+        <code>useEffect</code>, en la clase 4. Aquí el tema es el estado y lo
+        que pasa cuando alguien hace clic o escribe.
+      </p>
+      {tema.vista}
+      {activo === "eventos" && (
+        <Nota>
+          Respecto a la clase 2, la tarjeta ahora recibe{" "}
+          <code>onSelectedUser</code>. El padre guarda quién fue elegido. La
+          tarjeta no tiene su propio estado.
+        </Nota>
+      )}
+    </Estudio>
   );
 };
 

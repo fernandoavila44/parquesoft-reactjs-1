@@ -24,9 +24,6 @@ const Layout: React.FC = () => {
           ))}
         </div>
       </div>
-      <div>
-        <p>Otro componente</p>
-      </div>
     </Fragment>
   );
 };

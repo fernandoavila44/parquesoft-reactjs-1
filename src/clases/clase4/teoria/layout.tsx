@@ -1,57 +1,46 @@
-import React, { useState, useCallback, useMemo, useEffect } from "react";
-import Card from "./componentes/Card";
-import { User } from "./componentes/card.interface";
+import useFetch from "./hooks/useFetch";
 
-type Props = {
-  users: User[]
+interface Post {
+  id: number;
+  title: string;
+  body: string;
 }
-const Layout: React.FC<Props> = ({ users }) => {
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
-  // 🔹 useCallback: Memoriza la función para evitar recrearla en cada render
-  const [newState, setNesState] = useState(1);
 
-  const handleClick = useCallback((user: User) => {
-    console.log(newState)
-    setSelectedUser(user);
-  }, []);  // Sin dependencias (solo se crea una vez)
+const PostsList = () => {
+  const { data, loading, error } = useFetch<Post[]>(
+    "https://jsonplaceholder.typicode.com/posts?_limit=5"
+  );
 
-  // 🔹 useMemo: Memoriza el cálculo de "activeUsersCount" para evitar recalcularlo innecesariamente
-  const activeUsersCount = useMemo(() => {
-    console.log("Calculando usuarios activos...")
-    return users.filter((user) => user.active).length;
-  }, [users]); // Solo recalcula si `users` cambia
+  if (loading) return <p>Cargando posts...</p>;
+  if (error) return <p>Error: {error}</p>;
 
-  // console.log("render")
   return (
-    <div>
-      <h2>Lista de Usuarios</h2>
-      <p>Usuarios activos: {activeUsersCount}</p> {/* Mostramos el cálculo memorizado */}
-
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {users.map((user) => (
-          <Card
-            key={user.id}
-            {...user}
-            onClick={handleClick}
-          />
+    <article>
+      <h2>Pedir datos cuando el componente aparece</h2>
+      <p>
+        <code>useFetch</code> es un hook que esconde el <code>useEffect</code>,
+        el estado de carga y el error. La lista solo pinta lo que el hook
+        devuelve. Pedimos 5 posts para poder leerlos.
+      </p>
+      <ul style={{ listStyleType: "none", padding: 0 }}>
+        {data?.map((post) => (
+          <li
+            key={post.id}
+            style={{
+              border: "1px solid #e2e8f0",
+              padding: "16px",
+              margin: "10px 0",
+              borderRadius: "8px",
+              background: "#fff",
+            }}
+          >
+            <h3>{post.title}</h3>
+            <p>{post.body}</p>
+          </li>
         ))}
-      </div>
-
-      {/* Sección del usuario seleccionado */}
-      <div style={{ marginTop: "20px", padding: "10px", border: "1px solid #ccc" }}>
-        <h3>Usuario Seleccionado:</h3>
-        {selectedUser ? (
-          <div>
-            <p>Nombre: {selectedUser.firstName} {selectedUser.lastName}</p>
-            <p>Edad: {selectedUser.age}</p>
-            <p>Estado: {selectedUser.active ? "Activo" : "Inactivo"}</p>
-          </div>
-        ) : (
-          <p>No hay usuario seleccionado</p>
-        )}
-      </div>
-    </div>
+      </ul>
+    </article>
   );
 };
 
-export default Layout;
+export default PostsList;
