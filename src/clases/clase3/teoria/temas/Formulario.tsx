@@ -1,49 +1,90 @@
-import { useState } from "react";
-import { Codigo, Demo, Nota } from "../../../../components/aula/Aula";
+import { useRef, useState } from "react";
+import { Codigo, Columnas, Demo, Nota } from "../../../../components/aula/Aula";
 
 const Formulario = () => {
   const [nombre, setNombre] = useState("");
-  const [guardado, setGuardado] = useState("");
+  const campo = useRef<HTMLInputElement>(null);
+  const [leido, setLeido] = useState("");
+
+  const leerCampo = () => {
+    setLeido(campo.current?.value ?? "");
+  };
+
+  const vaciarCampo = () => {
+    if (campo.current) {
+      campo.current.value = "";
+    }
+  };
 
   return (
     <article>
-      <h2>Un input controlado</h2>
+      <h2>Controlado y no controlado</h2>
       <p>
-        El input está controlado cuando React es el dueño del texto:{" "}
-        <code>value</code> sale del estado y <code>onChange</code> lo actualiza.
-        Si falta <code>onChange</code>, el campo no se puede escribir.
+        En el controlado, React guarda el texto: cada tecla pasa por{" "}
+        <code>onChange</code> y el input muestra lo que hay en el estado. En el
+        no controlado, el navegador guarda el texto. React solo lo mira cuando
+        alguien lee <code>campo.current.value</code>.
       </p>
       <Codigo
         codigo={`const [nombre, setNombre] = useState("");
-
 <input
   value={nombre}
   onChange={(event) => setNombre(event.target.value)}
-/>`}
+/>
+
+const campo = useRef(null);
+<input ref={campo} />
+const texto = campo.current.value;`}
       />
-      <Demo titulo="Escribe un nombre y guárdalo">
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
-            setGuardado(nombre.trim());
-          }}
-          style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}
-        >
+      <Columnas>
+        <Demo titulo="Controlado">
           <input
             value={nombre}
             onChange={(event) => setNombre(event.target.value)}
-            placeholder="Tu nombre"
-            aria-label="Tu nombre"
+            placeholder="Escribe y mira abajo"
+            aria-label="Nombre controlado"
           />
-          <button type="submit" disabled={nombre.trim() === ""}>
-            Guardar
+          <p>
+            React ve: <strong>{nombre === "" ? "(vacío)" : nombre}</strong>
+          </p>
+          <button type="button" onClick={() => setNombre("")}>
+            Vaciar
           </button>
-        </form>
-        <p>{guardado ? `Guardado: ${guardado}` : "Todavía no hay un nombre guardado."}</p>
+        </Demo>
+        <Demo titulo="No controlado">
+          <input
+            ref={campo}
+            defaultValue=""
+            placeholder="Escribe y luego pulsa Leer"
+            aria-label="Nombre no controlado"
+          />
+          <p>
+            React leyó: <strong>{leido === "" ? "(todavía no)" : leido}</strong>
+          </p>
+          <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+            <button type="button" onClick={leerCampo}>
+              Leer
+            </button>
+            <button type="button" onClick={vaciarCampo}>
+              Vaciar el campo
+            </button>
+          </div>
+        </Demo>
+      </Columnas>
+      <Demo titulo="Controlado sin actualizar el estado">
+        <input
+          value="Este texto no cambia"
+          onChange={() => undefined}
+          aria-label="Input que no deja cambiar el texto"
+        />
+        <p>React vuelve a pintar el mismo value en cada tecla, así que no se escribe.</p>
       </Demo>
       <Nota>
-        <code>event.preventDefault()</code> evita que el formulario recargue la
-        página. En React la página no se recarga: el estado se queda.
+        Escribe en los dos. En el controlado, el texto de abajo cambia con cada
+        letra. En el otro, no cambia hasta que pulsas Leer. Si vacías el campo
+        no controlado, el input queda en blanco y React sigue mostrando la
+        última         lectura. El tercer campo tiene un <code>value</code> fijo: React lo
+        vuelve a pintar igual en cada tecla, así que no se puede escribir.
       </Nota>
     </article>
   );

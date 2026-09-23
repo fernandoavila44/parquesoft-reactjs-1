@@ -20,7 +20,7 @@ const temas: (Tema & { vista: ReactNode })[] = [
   {
     id: "formulario",
     titulo: "Formulario",
-    resumen: "Input controlado",
+    resumen: "Controlado y no controlado",
     vista: <Formulario />,
   },
 ];
