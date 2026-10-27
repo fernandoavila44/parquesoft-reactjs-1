@@ -9,6 +9,8 @@ const Card: React.FC<User> = ({
   active,
   onSelectedUser,
 }) => {
+
+  console.log('renderizado en el hijo')
   return (
     <div
       style={{

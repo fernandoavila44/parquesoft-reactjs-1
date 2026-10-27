@@ -9,7 +9,10 @@ const Clase1Practica = () => {
         cambie el texto de abajo al hacer clic, usando <code>useState</code> y
         un <code>onClick</code> que reciba la función, no su resultado.
       </p>
-      <CustomButton />
+      <CustomButton
+        id={56789}
+        numeros={[123, 76, 678, 2, 44]}
+      />
     </div>
   );
 };

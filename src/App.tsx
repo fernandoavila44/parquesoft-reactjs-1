@@ -12,6 +12,7 @@ function App() {
         </NavLink>
 
         <nav className={styles.menu} aria-label="Temas del curso">
+          <a href="/clase1">Clase 1 con etiqueta anchore</a>
           {clases.map((clase) => (
             <NavLink
               key={clase.ruta}

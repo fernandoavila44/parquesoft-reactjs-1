@@ -6,7 +6,6 @@ export const CartContext = createContext<CartContextType | undefined>(undefined)
 
 // Reducer
 const cartReducer = (state: ICartState, action: CartAction): ICartState => {
-
   switch (action.type) {
     case 'ADD_ITEM': {
       const existingItem = state.items.find((item) => item.id === action.payload.id);
@@ -20,8 +19,8 @@ const cartReducer = (state: ICartState, action: CartAction): ICartState => {
           )
           : [...state.items, { ...action.payload, quantity: 1 }],
         total: state.total + action.payload.price,
-      };
-    }
+      }
+    };
     case 'REMOVE_ITEM': {
       const itemToRemove = state.items.find((item) => item.id === action.payload);
       if (!itemToRemove) return state;
@@ -36,7 +35,8 @@ const cartReducer = (state: ICartState, action: CartAction): ICartState => {
           : state.items.filter(item => item.id !== action.payload),
         total: state.total - itemToRemove.price,
       };
-    }
+    };
+
     case 'CLEAR_CART': {
       return {
         items: [],

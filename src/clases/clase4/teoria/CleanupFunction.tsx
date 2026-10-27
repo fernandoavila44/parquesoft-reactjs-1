@@ -10,6 +10,7 @@ interface Post {
 function DetallePost() {
   const [post, setPost] = useState<Post | null>(null);
 
+
   useEffect(() => {
     const controlador = new AbortController();
     const espera = window.setTimeout(() => {

@@ -16,7 +16,9 @@ const Contexto = () => {
       <Demo titulo="El del medio ya no tiene esa prop">
         <ThemeProvider>
           <Medio />
+          <Medio />
         </ThemeProvider>
+        <Medio />
       </Demo>
       <Nota>
         El contexto sirve para un dato que muchos leen, como el tema o el

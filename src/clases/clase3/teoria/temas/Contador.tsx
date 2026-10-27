@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Codigo, Demo, Nota } from "../../../../components/aula/Aula";
+import Counter from "../../contador/component";
 
 const Contador = () => {
   const [count, setCount] = useState(0);
@@ -11,7 +12,7 @@ const Contador = () => {
   };
 
   const sumarTresVecesBien = () => {
-    setCount((valor) => valor + 1);
+    setCount((preValue) => preValue + 1);
     setCount((valor) => valor + 1);
     setCount((valor) => valor + 1);
   };
@@ -56,6 +57,7 @@ setCount((valor) => valor + 1);
         <code>console.log</code> dentro del cuerpo aparece otra vez: no es un
         error, es un render.
       </Nota>
+      {/* <Counter /> */}
     </article>
   );
 };

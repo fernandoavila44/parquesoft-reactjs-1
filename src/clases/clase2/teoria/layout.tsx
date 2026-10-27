@@ -8,23 +8,28 @@ const Layout: React.FC = () => {
   const users: User[] = [
     { id: 1, firstName: "Andres", lastName: "Garcia", age: 36, active: true },
     { id: 2, firstName: "María", lastName: "López", age: 25, active: false },
-    { id: 3, firstName: "Carlos", lastName: "Martínez", age: null, active: true },
+    { id: 3, firstName: "Carlos", lastName: "Martínez", age: null, active: false },
+    { id: 4, firstName: "Juan", lastName: "Cardenas", age: null, active: false },
+    { id: 5, firstName: "Pedro", lastName: "Rojas", active: true },
   ];
 
   return (
-    <Fragment>
+    <>
       <div>
         <h2>Lista de Usuarios</h2>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {users.map((user) => (
             <Card
-              key={`user-card-${user.id}`}
               {...user}
+              key={`usuarios-${user.id}`}
             />
           ))}
         </div>
       </div>
-    </Fragment>
+      <p>Esto es un parrafo</p>
+      <div></div>
+      <span></span>
+    </>
   );
 };
 

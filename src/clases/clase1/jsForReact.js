@@ -12,6 +12,30 @@ export function cumplirAnios(edad) {
   return actual;
 }
 
+let edad = 34;
+let nuevaEdad = edad;
+
+nuevaEdad = 40;
+
+// console.log(edad)
+// console.log(nuevaEdad);
+
+
+const persona = {
+  nombre: 'Andres',
+  edad: 40,
+  profesion: 'Gerente'
+}
+
+const nuevaPersona = { ...persona }
+
+nuevaPersona.profesion = 'Medico'
+
+// console.log('persona', persona)
+// console.log('nuevaPersona', nuevaPersona)
+
+
+
 // El spread copia el primer nivel.
 // vida es un número: la copia tiene el suyo.
 // stats es un objeto: original y copia comparten el mismo.
@@ -20,11 +44,14 @@ export function copiaSuperficial() {
     nombre: "Charizard",
     vida: 78,
     stats: { ataque: 84 },
+    history: [40, 82, 76, 46]
   };
 
   const copia = { ...pokemon };
   copia.vida = 90;
   copia.stats.ataque = 100;
+
+  console.log(pokemon, copia)
 
   return {
     original: { vida: pokemon.vida, ataque: pokemon.stats.ataque },
@@ -39,6 +66,12 @@ export function copiaProfunda() {
     vida: 78,
     stats: { ataque: 84 },
   };
+
+
+
+  const deepCopy = JSON.parse(JSON.stringify(pokemon));
+
+  console.log(deepCopy)
 
   const copia = {
     ...pokemon,
@@ -76,7 +109,14 @@ export function aplicar(operacion, a, b) {
 }
 
 export function leerPokemon() {
-  const pokemon = { id: 6, nombre: "Charizard", tipo: "Fuego" };
+  const pokemon = {
+    id: 6, nombre: "Charizard", tipo: "Fuego", stats: {
+      combate1: {
+        id: 1
+      }
+    }
+  };
+
   const { nombre: nombrePokemon, tipo } = pokemon;
 
   const movimientos = ["Lanzallamas", "Vuelo", "Garra"];

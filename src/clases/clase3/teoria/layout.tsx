@@ -16,6 +16,8 @@ const Users: React.FC = () => {
     setSelectedUser(user);
   };
 
+  console.log('Renderizado en el padre')
+
   return (
     <div>
       <h2>El clic sube, el estado se queda en el padre</h2>

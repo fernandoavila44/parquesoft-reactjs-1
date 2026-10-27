@@ -6,21 +6,26 @@ type Accion =
   | { type: "restar" }
   | { type: "reiniciar" };
 
-function reducer(state: number, action: Accion) {
+const reducer = (state: number, action: Accion) => {
   switch (action.type) {
-    case "sumar":
+    case 'sumar':
       return state + 1;
-    case "restar":
+
+    case 'restar':
       return state - 1;
-    case "reiniciar":
-      return 0;
+
+    case 'reiniciar':
+      return state = 0;
+
     default:
-      return state;
+      return state
   }
 }
 
 const ContadorReducer = () => {
   const [count, dispatch] = useReducer(reducer, 0);
+
+
 
   return (
     <article>

@@ -1,18 +1,23 @@
-import useFetch from "./hooks/useFetch";
-
-interface Post {
-  id: number;
-  title: string;
-  body: string;
-}
+import { useFetchV2 } from "./hooks/useFetchV2";
+import { IPost } from "./interfaces/post.interfase";
 
 const PostsList = () => {
-  const { data, loading, error } = useFetch<Post[]>(
-    "https://jsonplaceholder.typicode.com/posts?_limit=5"
-  );
 
-  if (loading) return <p>Cargando posts...</p>;
-  if (error) return <p>Error: {error}</p>;
+  const { data, loading, error } = useFetchV2<IPost[]>('https://jsonplaceholder.typicode.com/posts');
+
+  console.log('Componente renderizandose')
+
+  if (loading) {
+    return (
+      <p style={{ color: 'blue' }}>Obteniendo datos.... por favor espere</p>
+    )
+  }
+
+  if (error) {
+    return (
+      <p style={{ color: 'red' }}>Error obteniendo datos, {error}</p>
+    )
+  }
 
   return (
     <article>

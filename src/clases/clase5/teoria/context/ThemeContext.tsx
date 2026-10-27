@@ -7,20 +7,21 @@ type ThemeContextType = {
   toggleTheme: () => void;
 };
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+export const ThemeContext = createContext<ThemeContextType>({
+  theme: 'light',
+  toggleTheme: () => null
+});
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useState<Theme>("light");
-
   const toggleTheme = () => {
-    setTheme((prevValue) => (prevValue === "light" ? "dark" : "light"));
+    setTheme((prevState) => prevState === 'light' ? 'dark' : 'light')
   };
-
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
-  );
+  )
 };
 
 export const useTheme = () => {
